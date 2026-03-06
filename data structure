@@ -1,0 +1,1213 @@
+1.	Construct a linear array and perform insertion, deletion and accessing the elements.
+
+#include <stdio.h>
+
+#define MAX 100
+
+int main() {
+    int arr[MAX], n, i, pos, value;
+
+    // --- Constructing the Linear Array ---
+    printf("Enter number of elements in array: ");
+    scanf("%d", &n);
+
+    printf("Enter %d elements:\n", n);
+    for(i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    // --- Displaying the Array ---
+    printf("\nArray elements: ");
+    for(i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    // --- Insertion Operation ---
+    printf("\n\nEnter position to insert (0 to %d): ", n);
+    scanf("%d", &pos);
+
+    printf("Enter value to insert: ");
+    scanf("%d", &value);
+
+    // shifting elements
+    for(i = n; i > pos; i--) {
+        arr[i] = arr[i - 1];
+    }
+    arr[pos] = value;
+    n++;
+
+    printf("Array after insertion: ");
+    for(i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    // --- Deletion Operation ---
+    printf("\n\nEnter position to delete (0 to %d): ", n - 1);
+    scanf("%d", &pos);
+
+    // shifting elements
+    for(i = pos; i < n - 1; i++) {
+        arr[i] = arr[i + 1];
+    }
+    n--;
+
+    printf("Array after deletion: ");
+    for(i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    // --- Accessing an Element ---
+    printf("\n\nEnter index to access value: ");
+    scanf("%d", &pos);
+
+    if(pos >= 0 && pos < n)
+        printf("Element at index %d = %d\n", pos, arr[pos]);
+    else
+        printf("Invalid index!\n");
+
+    return 0;
+}
+
+2.Small 
+
+1.	#include <stdio.h>
+2.	int main() {
+3.	    int a[10] = {10, 20, 30, 40, 50};
+4.	    int n = 5;   // current size
+5.	    int pos, val, i;
+6.	    // Display
+7.	    printf("Array: ");
+8.	    for(i = 0; i < n; i++)
+9.	        printf("%d ", a[i]);
+10.	    // Insertion
+11.	    pos = 2;     // insert at index 2
+12.	    val = 99;    // value to insert
+13.	
+14.	    for(i = n; i > pos; i--)
+15.	        a[i] = a[i - 1];
+16.	    a[pos] = val;
+17.	    n++;
+18.	    printf("\nAfter insertion: ");
+19.	    for(i = 0; i < n; i++)
+20.	        printf("%d ", a[i]);
+21.	    // Deletion
+22.	    pos = 3;   // delete index 3
+23.	    for(i = pos; i < n - 1; i++)
+24.	        a[i] = a[i + 1];
+25.	    n--;
+26.	    printf("\nAfter deletion: ");
+27.	    for(i = 0; i < n; i++)
+28.	    printf("%d ", a[i]);
+29.	    // Accessing
+30.	    printf("\nAccess element at index 1: %d", a[1]);
+31.	    return 0;
+32.	}
+
+
+2.	Check whether a given matrix is a sparse matrix or not.
+
+#include <stdio.h>
+
+int main() {
+    int a[10][10], rows, cols, i, j;
+    int zeroCount = 0, total;
+
+    printf("Enter rows and columns: ");
+    scanf("%d %d", &rows, &cols);
+
+    total = rows * cols;
+
+    printf("Enter matrix elements:\n");
+    for(i = 0; i < rows; i++) {
+        for(j = 0; j < cols; j++) {
+            scanf("%d", &a[i][j]);
+            if(a[i][j] == 0)
+                zeroCount++;
+        }
+    }
+
+    // Display matrix
+    printf("\nMatrix:\n");
+    for(i = 0; i < rows; i++) {
+        for(j = 0; j < cols; j++)
+            printf("%d ", a[i][j]);
+        printf("\n");
+    }
+
+    // Check sparse condition
+    if(zeroCount > total / 2)
+        printf("\nIt is a Sparse Matrix.\n");
+    else
+        printf("\nIt is NOT a Sparse Matrix.\n");
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+2.Small 
+
+#include <stdio.h>
+
+int main() {
+    int a[3][3] = { {0, 5, 0},
+                    {0, 0, 9},
+                    {3, 0, 0} };
+
+    int zero = 0, i, j, total = 3 * 3;
+
+    for(i = 0; i < 3; i++)
+        for(j = 0; j < 3; j++)
+            if(a[i][j] == 0)
+                zero++;
+
+    if(zero > total / 2)
+        printf("Sparse matrix");
+    else
+        printf("Not sparse matrix");
+
+    return 0;
+}
+
+3.
+
+#include <stdio.h>
+
+int main() {
+    int a[10][10], r, c, i, j, zero = 0, total;
+
+    printf("Enter rows and columns: ");
+    scanf("%d %d", &r, &c);
+
+    total = r * c;
+
+    printf("Enter matrix elements:\n");
+    for(i = 0; i < r; i++)
+        for(j = 0; j < c; j++) {
+            scanf("%d", &a[i][j]);
+            if(a[i][j] == 0)
+                zero++;
+        }
+
+    if(zero > total / 2)
+        printf("Sparse matrix");
+    else
+        printf("Not sparse matrix");
+
+    return 0;
+}
+
+
+3.	Implement string operations
+
+#include <stdio.h>
+
+int main() {
+    char str1[100], str2[100], concat[200];
+    int i, j, len = 0, cmp = 0;
+
+    printf("Enter first string: ");
+    scanf("%s", str1);
+
+    printf("Enter second string: ");
+    scanf("%s", str2);
+
+    // Length of string (manual)
+    for(i = 0; str1[i] != '\0'; i++)
+        len++;
+
+    printf("\nLength of first string = %d", len);
+
+    // Copy string (manual)
+    for(i = 0; str1[i] != '\0'; i++)
+        str2[i] = str1[i];
+    str2[i] = '\0';
+
+    printf("\nAfter copying, second string = %s", str2);
+
+    // Concatenate strings (manual)
+    for(i = 0; str1[i] != '\0'; i++)
+        concat[i] = str1[i];
+
+    for(j = 0; str2[j] != '\0'; j++)
+        concat[i + j] = str2[j];
+
+    concat[i + j] = '\0';
+
+    printf("\nConcatenated string = %s", concat);
+
+    // Compare strings (manual)
+    cmp = 0;
+    for(i = 0; str1[i] != '\0'; i++) {
+        if(str1[i] != str2[i]) {
+            cmp = 1;
+            break;
+        }
+    }
+
+    if(cmp == 0)
+        printf("\nStrings are equal");
+    else
+        printf("\nStrings are NOT equal");
+
+    return 0;
+}
+
+2.Small 
+
+#include <stdio.h>
+
+int main() {
+    char s1[50], s2[50];
+    int i, len = 0, same = 1;
+
+    printf("Enter a string: ");
+    scanf("%s", s1);
+
+    // Length
+    for(i = 0; s1[i] != '\0'; i++)
+        len++;
+
+    printf("Length = %d\n", len);
+
+    // Copy
+    for(i = 0; s1[i] != '\0'; i++)
+        s2[i] = s1[i];
+    s2[i] = '\0';
+
+    printf("Copied string = %s\n", s2);
+
+    // Compare
+    for(i = 0; s1[i] != '\0'; i++)
+        if(s1[i] != s2[i])
+            same = 0;
+
+    if(same)
+        printf("Strings are equal");
+    else
+        printf("Strings are not equal");
+
+    return 0;
+}
+4.	Arrange the list of elements using selection Sort & bubble sort.
+
+#include <stdio.h>
+int main() {
+    int a[10], n, i, j, temp, min;
+
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    printf("Enter elements:\n");
+    for(i = 0; i < n; i++)
+        scanf("%d", &a[i]);
+
+    // ---- Selection Sort ----
+    for(i = 0; i < n-1; i++) {
+        min = i;
+        for(j = i+1; j < n; j++)
+            if(a[j] < a[min])
+                min = j;
+
+        temp = a[i];
+        a[i] = a[min];
+        a[min] = temp;
+    }
+
+    printf("\nAfter Selection Sort: ");
+    for(i = 0; i < n; i++)
+        printf("%d ", a[i]);
+
+    // ---- Bubble Sort ----
+    for(i = 0; i < n-1; i++)
+        for(j = 0; j < n-i-1; j++)
+            if(a[j] > a[j+1]) {
+                temp = a[j];
+                a[j] = a[j+1];
+                a[j+1] = temp;
+            }
+    printf("\nAfter Bubble Sort: ");
+    for(i = 0; i < n; i++)
+        printf("%d ", a[i]);
+
+    return 0;
+}
+
+5.	Arrange the list of elements using insertion sort & quick sort
+#include <stdio.h>
+
+// ---- Insertion Sort ----
+void insertionSort(int a[], int n) {
+    int i, j, key;
+    for(i = 1; i < n; i++) {
+        key = a[i];
+        j = i - 1;
+        while(j >= 0 && a[j] > key) {
+            a[j+1] = a[j];
+            j--;
+        }
+        a[j+1] = key;
+    }
+}
+
+// ---- Quick Sort ----
+int partition(int a[], int low, int high) {
+    int pivot = a[high], i = low - 1, j, temp;
+
+    for(j = low; j < high; j++) {
+        if(a[j] < pivot) {
+            i++;
+            temp = a[i]; a[i] = a[j]; a[j] = temp;
+        }
+    }
+
+    temp = a[i+1]; 
+    a[i+1] = a[high]; 
+    a[high] = temp;
+
+    return i + 1;
+}
+
+void quickSort(int a[], int low, int high) {
+    if(low < high) {
+        int p = partition(a, low, high);
+        quickSort(a, low, p - 1);
+        quickSort(a, p + 1, high);
+    }
+}
+
+int main() {
+    int a[20], n, i;
+
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    printf("Enter elements:\n");
+    for(i = 0; i < n; i++)
+        scanf("%d", &a[i]);
+
+    // Insertion Sort
+    insertionSort(a, n);
+    printf("\nAfter Insertion Sort: ");
+    for(i = 0; i < n; i++)
+        printf("%d ", a[i]);
+
+    // Quick Sort
+    quickSort(a, 0, n - 1);
+    printf("\nAfter Quick Sort: ");
+    for(i = 0; i < n; i++)
+        printf("%d ", a[i]);
+
+    return 0;
+}
+
+Small
+
+#include <stdio.h>
+
+// Insertion Sort
+void insertionSort(int a[], int n) {
+    int i, j, key;
+    for(i = 1; i < n; i++) {
+        key = a[i];
+        j = i - 1;
+        while(j >= 0 && a[j] > key) {
+            a[j+1] = a[j];
+            j--;
+        }
+        a[j+1] = key;
+    }
+}
+
+// Quick Sort
+void quickSort(int a[], int low, int high) {
+    int i = low, j = high, pivot = a[(low+high)/2], temp;
+
+    while(i <= j) {
+        while(a[i] < pivot) i++;
+        while(a[j] > pivot) j--;
+        if(i <= j) {
+            temp = a[i]; a[i] = a[j]; a[j] = temp;
+            i++; j--;
+        }
+    }
+
+    if(low < j) quickSort(a, low, j);
+    if(i < high) quickSort(a, i, high);
+}
+
+int main() {
+    int a[20], n, i;
+
+    printf("Enter n: ");
+    scanf("%d", &n);
+
+    for(i = 0; i < n; i++)
+        scanf("%d", &a[i]);
+
+    insertionSort(a, n);
+    printf("Insertion Sort: ");
+    for(i = 0; i < n; i++) printf("%d ", a[i]);
+
+    quickSort(a, 0, n-1);
+    printf("\nQuick Sort: ");
+    for(i = 0; i < n; i++) printf("%d ", a[i]);
+
+    return 0;
+}
+
+6.Implement a hash table.
+
+#include <stdio.h>
+
+#define SIZE 10
+
+int hashTable[SIZE];
+
+// Insert into hash table
+void insert(int key) {
+    int index = key % SIZE;
+
+    while(hashTable[index] != -1) {
+        index = (index + 1) % SIZE;   // linear probing
+    }
+    hashTable[index] = key;
+}
+
+// Search element
+int search(int key) {
+    int index = key % SIZE;
+
+    while(hashTable[index] != -1) {
+        if(hashTable[index] == key)
+            return index;
+        index = (index + 1) % SIZE;
+    }
+    return -1;
+}
+
+int main() {
+    int i, n, key;
+
+    // Initialize table with -1
+    for(i = 0; i < SIZE; i++)
+        hashTable[i] = -1;
+
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    printf("Enter elements:\n");
+    for(i = 0; i < n; i++) {
+        scanf("%d", &key);
+        insert(key);
+    }
+
+    // Display hash table
+    printf("\nHash Table:\n");
+    for(i = 0; i < SIZE; i++)
+        printf("%d ", hashTable[i]);
+
+    printf("\n\nEnter element to search: ");
+    scanf("%d", &key);
+
+    int pos = search(key);
+    if(pos != -1)
+        printf("Element found at index %d", pos);
+    else
+        printf("Element not found");
+
+    return 0;
+}
+
+SMALL
+
+#include <stdio.h>
+
+int main() {
+    int ht[10], i, key, n, idx;
+
+    for(i = 0; i < 10; i++)
+        ht[i] = -1;
+
+    printf("Enter how many keys: ");
+    scanf("%d", &n);
+
+    printf("Enter keys:\n");
+    for(i = 0; i < n; i++) {
+        scanf("%d", &key);
+        idx = key % 10;
+
+        while(ht[idx] != -1)
+            idx = (idx + 1) % 10;
+
+        ht[idx] = key;
+    }
+
+    printf("\nHash Table:\n");
+    for(i = 0; i < 10; i++)
+        printf("%d ", ht[i]);
+
+    return 0;
+}
+
+
+7.Construct a linked list and perform insertion and deletion of elements.
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node {
+    int data;
+    struct node *next;
+};
+
+int main() {
+    struct node *head = NULL, *temp, *newNode;
+    int value;
+
+    // ---- INSERTION AT END ----
+    newNode = (struct node*)malloc(sizeof(struct node));
+    newNode->data = 10;
+    newNode->next = NULL;
+    head = newNode;
+
+    newNode = (struct node*)malloc(sizeof(struct node));
+    newNode->data = 20;
+    newNode->next = NULL;
+    head->next = newNode;
+
+    // Display list
+    printf("List: ");
+    temp = head;
+    while(temp != NULL) {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    }
+
+    // ---- DELETION AT BEGINNING ----
+    temp = head;
+    head = head->next;
+    free(temp);
+
+    // Display list
+    printf("\nAfter deletion: ");
+    temp = head;
+    while(temp != NULL) {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    }
+
+    return 0;
+}
+
+SMALL
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node {
+    int data;
+    struct node *next;
+};
+
+int main() {
+    struct node *head = NULL, *t;
+
+    // Insert 10
+    head = (struct node*)malloc(sizeof(struct node));
+    head->data = 10;
+    head->next = NULL;
+
+    // Insert 20
+    t = (struct node*)malloc(sizeof(struct node));
+    t->data = 20;
+    t->next = NULL;
+    head->next = t;
+
+    // Delete first node
+    t = head;
+    head = head->next;
+    free(t);
+
+    // Display list
+    t = head;
+    while(t != NULL) {
+        printf("%d ", t->data);
+        t = t->next;
+    }
+
+    return 0;
+}
+
+8.Implement the concept of circular linked list.
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node {
+    int data;
+    struct node *next;
+};
+
+int main() {
+    struct node *head = NULL, *t, *newNode;
+
+    // ---- Insert 10 ----
+    newNode = (struct node*)malloc(sizeof(struct node));
+    newNode->data = 10;
+    if(head == NULL) {
+        head = newNode;
+        newNode->next = head;
+    }
+
+    // ---- Insert 20 ----
+    newNode = (struct node*)malloc(sizeof(struct node));
+    newNode->data = 20;
+
+    t = head;
+    while(t->next != head)     // reach last node
+        t = t->next;
+
+    t->next = newNode;
+    newNode->next = head;
+
+    // ---- Display Circular List ----
+    printf("Circular List: ");
+    t = head;
+    do {
+        printf("%d ", t->data);
+        t = t->next;
+    } while(t != head);
+
+    return 0;
+}
+
+SMALL
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node {
+    int data;
+    struct node *next;
+};
+
+int main() {
+    struct node *head = NULL, *t;
+
+    // First node
+    head = (struct node*)malloc(sizeof(struct node));
+    head->data = 10;
+    head->next = head;
+
+    // Second node
+    t = (struct node*)malloc(sizeof(struct node));
+    t->data = 20;
+    t->next = head;        // points to first node
+    head->next = t;        // first points to second
+
+    // Display
+    t = head;
+    do {
+        printf("%d ", t->data);
+        t = t->next;
+    } while(t != head);
+
+    return 0;
+}
+
+9.Implement stack operations.
+#include <stdio.h>
+#define SIZE 5
+int stack[SIZE], top = -1;
+void push(int x) {
+    if(top == SIZE-1)
+        printf("Stack Overflow\n");
+    else
+        stack[++top] = x;
+}
+
+void pop() {
+    if(top == -1)
+        printf("Stack Underflow\n");
+    else
+        top--;
+}
+
+void display() {
+    int i;
+    for(i = top; i >= 0; i--)
+        printf("%d ", stack[i]);
+    printf("\n");
+}
+
+int main() {
+    push(10);
+    push(20);
+    push(30);
+    printf("Stack: ");
+    display();
+
+    pop();
+
+    printf("After pop: ");
+    display();
+
+    return 0;
+}
+
+SMALL
+
+#include <stdio.h>
+int main() {
+    int stack[5], top = -1;
+    stack[++top] = 10;   // push
+    stack[++top] = 20;   // push
+    stack[++top] = 30;   // push
+
+    top--;               // pop (removes 30)
+
+    for(int i = top; i >= 0; i--)   // display
+        printf("%d ", stack[i]);
+
+    return 0;
+}
+
+10. Implement queue operations using linked lists.
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node {
+    int data;
+    struct node *next;
+};
+
+int main() {
+    struct node *front = NULL, *rear = NULL, *temp;
+
+    // --- Enqueue 10 ---
+    temp = (struct node*)malloc(sizeof(struct node));
+    temp->data = 10;
+    temp->next = NULL;
+    front = rear = temp;
+
+    // --- Enqueue 20 ---
+    temp = (struct node*)malloc(sizeof(struct node));
+    temp->data = 20;
+    temp->next = NULL;
+    rear->next = temp;
+    rear = temp;
+
+    // --- Dequeue ---
+    temp = front;
+    front = front->next;
+    free(temp);
+
+    // --- Display Queue ---
+    temp = front;
+    while(temp != NULL) {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    }
+
+    return 0;
+}
+
+SMALL
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node { int data; struct node *next; };
+struct node *front = NULL, *rear = NULL;
+
+int main() {
+    struct node *t;
+
+    // Enqueue 10
+    t = malloc(sizeof(struct node));
+    t->data = 10; t->next = NULL;
+    front = rear = t;
+
+    // Enqueue 20
+    t = malloc(sizeof(struct node));
+    t->data = 20; t->next = NULL;
+    rear->next = t; rear = t;
+
+    // Dequeue
+    t = front;
+    front = front->next;
+    free(t);
+
+    // Display
+    for(t = front; t != NULL; t = t->next)
+        printf("%d ", t->data);
+
+    return 0;
+}
+
+11. Implement priority queue operations
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node { int data; struct node *next; };
+struct node *front = NULL;
+
+int main() {
+    struct node *t, *p, *q;
+
+    // Insert 30
+    t = malloc(sizeof(struct node)); t->data = 30;
+    p = front; q = NULL;
+    while(p && p->data < 30) { q = p; p = p->next; }
+    t->next = p; if(q) q->next = t; else front = t;
+
+    // Insert 10
+    t = malloc(sizeof(struct node)); t->data = 10;
+    p = front; q = NULL;
+    while(p && p->data < 10) { q = p; p = p->next; }
+    t->next = p; if(q) q->next = t; else front = t;
+
+    // Delete (highest priority → smallest)
+    t = front; front = front->next; free(t);
+
+    // Display
+    for(p = front; p; p = p->next) printf("%d ", p->data);
+
+    return 0;
+}
+
+SMALL 
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node { int data; struct node *next; };
+struct node *front = NULL;
+
+struct node* insert(int x) {
+    struct node *t = malloc(sizeof(struct node)), *p = front, *q = NULL;
+    t->data = x;
+    while(p && p->data < x) { q = p; p = p->next; }
+    t->next = p; if(q) q->next = t; else front = t;
+    return front;
+}
+
+int main() {
+    insert(30);
+    insert(10);
+    insert(20);
+
+    struct node *t = front;      // delete smallest
+    front = front->next; free(t);
+
+    for(t = front; t; t = t->next)   // display
+        printf("%d ", t->data);
+}
+
+12.Implement circular queue operations.
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node { int data; struct node *next; };
+struct node *rear = NULL;
+
+void enqueue(int x) {
+    struct node *t = malloc(sizeof(struct node));
+    t->data = x;
+    if(!rear) { rear = t; rear->next = rear; }
+    else { t->next = rear->next; rear->next = t; rear = t; }
+}
+
+void dequeue() {
+    if(!rear) return;
+    struct node *f = rear->next;
+    if(f == rear) rear = NULL;
+    else rear->next = f->next;
+    free(f);
+}
+
+void display() {
+    if(!rear) return;
+    struct node *p = rear->next;
+    do { printf("%d ", p->data); p = p->next; } while(p != rear->next);
+}
+
+int main() {
+    enqueue(10);
+    enqueue(20);
+    enqueue(30);
+    dequeue();
+    display();
+}
+
+SMALL
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node { int data; struct node *next; };
+struct node *rear = NULL;
+
+int main() {
+    struct node *t;
+
+    // enqueue 10
+    t = malloc(sizeof(struct node)); t->data = 10;
+    rear = t; rear->next = rear;
+
+    // enqueue 20
+    t = malloc(sizeof(struct node)); t->data = 20;
+    t->next = rear->next; rear->next = t; rear = t;
+
+    // dequeue
+    t = rear->next;
+    rear->next = t->next;
+    free(t);
+
+    // display
+    t = rear->next;
+    do { printf("%d ", t->data); t = t->next; } while(t != rear->next);
+
+    return 0;
+}
+
+13. Search a given number using linear search and binary search.
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node { int data; struct node *next; };
+struct node *head = NULL;
+
+void insert(int x) {
+    struct node *t = malloc(sizeof(struct node));
+    t->data = x; t->next = head; head = t;
+}
+
+int linearSearch(int key) {
+    struct node *p = head;
+    while (p) {
+        if (p->data == key) return 1;
+        p = p->next;
+    }
+    return 0;
+}
+
+struct node* getNode(int index) {
+    struct node *p = head;
+    for (int i = 0; p && i < index; i++) p = p->next;
+    return p;
+}
+
+int binarySearch(int key, int n) {
+    int low = 0, high = n - 1;
+    while (low <= high) {
+        int mid = (low + high) / 2;
+        struct node *m = getNode(mid);
+        if (m->data == key) return 1;
+        else if (m->data < key) low = mid + 1;
+        else high = mid - 1;
+    }
+    return 0;
+}
+
+int main() {
+    insert(30); insert(20); insert(10); // sorted list: 10,20,30
+
+    printf("Linear Search 20: %s\n", linearSearch(20) ? "Found" : "Not Found");
+    printf("Binary Search 20: %s\n", binarySearch(20, 3) ? "Found" : "Not Found");
+
+    return 0;
+}
+
+SMALL
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node { int data; struct node *next; };
+struct node *head = NULL;
+
+int main() {
+    struct node *t;
+    
+    // Create sorted list: 10 → 20 → 30
+    t = malloc(sizeof(struct node)); t->data = 30; t->next = head; head = t;
+    t = malloc(sizeof(struct node)); t->data = 20; t->next = head; head = t;
+    t = malloc(sizeof(struct node)); t->data = 10; t->next = head; head = t;
+
+    // Linear Search for 20
+    for(t = head; t; t = t->next)
+        if(t->data == 20) printf("Linear: Found\n");
+
+    // Binary Search (accessing middle repeatedly)
+    int n = 3, low = 0, high = n-1, mid, i;
+    while(low <= high) {
+        mid = (low + high) / 2;
+        t = head;
+        for(i = 0; i < mid; i++) t = t->next;   // get middle node
+        if(t->data == 20) { printf("Binary: Found\n"); break; }
+        else if(t->data < 20) low = mid + 1;
+        else high = mid - 1;
+    }
+
+    return 0;
+}
+
+14. Construct a graph and perform the depth first Search.
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node { int v; struct node *next; };
+struct node *adj[10];
+int vis[10];
+
+void addEdge(int u, int v) {
+    struct node *t = malloc(sizeof(struct node));
+    t->v = v;  
+    t->next = adj[u];
+    adj[u] = t;
+}
+
+void DFS(int u) {
+    vis[u] = 1;
+    printf("%d ", u);
+
+    struct node *p = adj[u];
+    while(p) {
+        if(!vis[p->v])
+            DFS(p->v);
+        p = p->next;
+    }
+}
+
+int main() {
+    addEdge(0,1);
+    addEdge(0,2);
+    addEdge(1,3);
+    addEdge(1,4);
+
+    DFS(0);
+
+    return 0;
+}
+
+SMALL
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node{ int v; struct node *n; };
+struct node *g[5]; 
+int vis[5];
+
+int main(){
+    struct node *t;
+
+    // build graph: 0→1, 0→2
+    t=malloc(sizeof(struct node)); t->v=2; t->n=g[0]; g[0]=t;
+    t=malloc(sizeof(struct node)); t->v=1; t->n=g[0]; g[0]=t;
+
+    // DFS (stack)
+    int st[10], top=-1, u;
+    st[++top]=0;
+
+    while(top>=0){
+        u = st[top--];
+        if(!vis[u]){
+            printf("%d ", u);
+            vis[u]=1;
+            for(t=g[u]; t; t=t->n)
+                st[++top]=t->v;
+        }
+    }
+}
+15. Create a binary search tree to perform inorder, preorder and postorder traversals.
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node {
+    int data;
+    struct node *left, *right;
+};
+
+struct node* insert(int x, struct node *root) {
+    if (!root) {
+        root = malloc(sizeof(struct node));
+        root->data = x;
+        root->left = root->right = NULL;
+        return root;
+    }
+    if (x < root->data) root->left = insert(x, root->left);
+    else root->right = insert(x, root->right);
+    return root;
+}
+
+void inorder(struct node *r) {
+    if (r) { inorder(r->left); printf("%d ", r->data); inorder(r->right); }
+}
+
+void preorder(struct node *r) {
+    if (r) { printf("%d ", r->data); preorder(r->left); preorder(r->right); }
+}
+
+void postorder(struct node *r) {
+    if (r) { postorder(r->left); postorder(r->right); printf("%d ", r->data); }
+}
+
+int main() {
+    struct node *root = NULL;
+
+    root = insert(30, root);
+    root = insert(20, root);
+    root = insert(40, root);
+    root = insert(10, root);
+
+    printf("Inorder: "); inorder(root);
+    printf("\nPreorder: "); preorder(root);
+    printf("\nPostorder: "); postorder(root);
+
+    return 0;
+}
+
+Small 
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node { int d; struct node *l,*r; };
+
+struct node* ins(struct node *t,int x){
+    if(!t){
+        t = malloc(sizeof(struct node));
+        t->d = x; t->l = t->r = NULL;
+        return t;
+    }
+    if(x < t->d) t->l = ins(t->l,x);
+    else t->r = ins(t->r,x);
+    return t;
+}
+
+void in(struct node *t){ if(t){ in(t->l); printf("%d ",t->d); in(t->r);} }
+void pre(struct node *t){ if(t){ printf("%d ",t->d); pre(t->l); pre(t->r);} }
+void post(struct node *t){ if(t){ post(t->l); post(t->r); printf("%d ",t->d);} }
+
+int main(){
+    struct node *r=NULL;
+    r=ins(r,30); r=ins(r,20); r=ins(r,40); r=ins(r,10);
+
+    in(r);   printf("\n");
+    pre(r);  printf("\n");
+    post(r);
+}
